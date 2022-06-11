@@ -1,0 +1,82 @@
+{
+  "groups": [
+    {
+      "name": "pulsar",
+      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "pulsar.service-url",
+      "type": "java.lang.String",
+      "description": "服务Url",
+      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "defaultValue": "pulsar://127.0.0.1:6650"
+    },
+    {
+      "name": "pulsar.compression-type",
+      "type": "java.lang.String",
+      "description": "生产者压缩策略",
+      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "defaultValue": "LZ4"
+    },
+    {
+      "name": "pulsar.subscription-name",
+      "type": "java.lang.String",
+      "description": "消费者订阅名称",
+      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "defaultValue": "default"
+    },
+    {
+      "name": "pulsar.subscription-type",
+      "type": "java.lang.String",
+      "description": "订阅类型",
+      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "defaultValue": "Shared"
+    }
+  ],
+  "hints": [
+    {
+      "name": "pulsar.compression-type",
+      "values": [
+        {
+          "value": "NONE",
+          "description": "NONE"
+        },
+        {
+          "value": "LZ4",
+          "description": "LZ4"
+        },
+        {
+          "value": "ZLIB",
+          "description": "ZLIB"
+        },
+        {
+          "value": "ZSTD",
+          "description": "ZSTD"
+        }
+      ]
+    },
+    {
+      "name": "pulsar.subscription-type",
+      "values": [
+        {
+          "value": "Exclusive",
+          "description": "独占模式"
+        },
+        {
+          "value": "Failover",
+          "description": "灾备模式"
+        },
+        {
+          "value": "Shared",
+          "description": "共享模式"
+        },
+        {
+          "value": "Key_Shared",
+          "description": "Key共享模式"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'mq-assistant'
+
+include 'mq-assistant-core'
+include 'mq-assistant-annotation'
+include 'mq-assistant-boot-starter'
