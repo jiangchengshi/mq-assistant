@@ -61,7 +61,7 @@ public class ConsumerBeanPostProcessor implements BeanPostProcessor {
                     .messageListener((consumer, msg) -> {
                         try {
                             method.setAccessible(true);
-                            method.invoke(bean, msg.getData());
+                            method.invoke(bean, consumer.getTopic(), msg.getData());
                             consumer.acknowledge(msg);
                         } catch (Exception e) {
                             consumer.negativeAcknowledge(msg);

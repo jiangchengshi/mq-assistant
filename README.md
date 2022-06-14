@@ -26,7 +26,7 @@ implementation("cool.doudou:mq-assistant:latest")
 ```yaml
 pulsar:
   service-url: pulsar://127.0.0.1:6650
-  subscription-name: celery
+  subscription-name: sub-celery
 ```
 
 ### 使用方式
@@ -54,8 +54,8 @@ public class MqComponent {
 @Component
 public class MqComponent {
     @MqConsumer(topics = {"celery"})
-    public void receive(byte[] msg) {
-        System.out.println("consumer: " + new String(msg));
+    public void receive(String topic, byte[] msg) {
+        System.out.println("consumer: topic[" + topic + "] => " + new String(msg));
     }
 }
 ```
