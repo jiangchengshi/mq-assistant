@@ -1,6 +1,6 @@
 # 欢迎使用 MQ-Assistant
 
-[![Maven](https://img.shields.io/badge/Maven-v1.0.0-blue)](https://search.maven.org/search?q=g:cool.doudou%20a:mq-assistant-*)
+[![Maven](https://img.shields.io/badge/Maven-v1.0.2-blue)](https://search.maven.org/search?q=g:cool.doudou%20a:mq-assistant-*)
 [![License](https://img.shields.io/badge/License-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## 简介
@@ -27,6 +27,7 @@ implementation("cool.doudou:mq-assistant:latest")
 pulsar:
   service-url: pulsar://127.0.0.1:6650
   subscription-name: sub-celery
+  subscription-type: Shared
 ```
 
 ### 使用方式
@@ -81,6 +82,13 @@ public class MqServiceImpl {
 
         // 异步
         mqHelper.sendAsync("celery", "您好Async", System.out::println);
+        
+        // 同步
+        String msgId = mqHelper.send("celery", new byte[]{0x01, 0x02, 0x03, 0x04});
+        System.out.println("send: " + msgId);
+
+        // 异步
+        mqHelper.sendAsync("celery", new byte[]{0x01, 0x02, 0x03, 0x04}, System.out::println);
     }
 }
 ```
