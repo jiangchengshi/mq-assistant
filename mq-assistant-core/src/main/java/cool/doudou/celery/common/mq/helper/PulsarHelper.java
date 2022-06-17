@@ -20,9 +20,14 @@ import java.util.function.Consumer;
 public class PulsarHelper implements MqHelper {
     @Override
     public String send(String topic, String msg) {
+        return send(topic, msg.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public String send(String topic, byte[] msgArr) {
         try {
             return ConcurrentMapFactory.get(topic)
-                    .send(msg.getBytes(StandardCharsets.UTF_8))
+                    .send(msgArr)
                     .toString();
         } catch (PulsarClientException e) {
             log.error("send exception: ", e);
@@ -32,11 +37,16 @@ public class PulsarHelper implements MqHelper {
 
     @Override
     public String send(String topic, String key, String msg) {
+        return send(topic, key, msg.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public String send(String topic, String key, byte[] msgArr) {
         try {
             return ConcurrentMapFactory.get(topic)
                     .newMessage()
                     .key(key)
-                    .value(msg.getBytes(StandardCharsets.UTF_8))
+                    .value(msgArr)
                     .send()
                     .toString();
         } catch (PulsarClientException e) {
@@ -47,10 +57,15 @@ public class PulsarHelper implements MqHelper {
 
     @Override
     public String send(String topic, String msg, long delay) {
+        return send(topic, msg.getBytes(StandardCharsets.UTF_8), delay);
+    }
+
+    @Override
+    public String send(String topic, byte[] msgArr, long delay) {
         try {
             return ConcurrentMapFactory.get(topic)
                     .newMessage()
-                    .value(msg.getBytes(StandardCharsets.UTF_8))
+                    .value(msgArr)
                     .deliverAfter(delay, TimeUnit.MILLISECONDS)
                     .send()
                     .toString();
@@ -62,11 +77,16 @@ public class PulsarHelper implements MqHelper {
 
     @Override
     public String send(String topic, String key, String msg, long delay) {
+        return send(topic, key, msg.getBytes(StandardCharsets.UTF_8), delay);
+    }
+
+    @Override
+    public String send(String topic, String key, byte[] msgArr, long delay) {
         try {
             return ConcurrentMapFactory.get(topic)
                     .newMessage()
                     .key(key)
-                    .value(msg.getBytes(StandardCharsets.UTF_8))
+                    .value(msgArr)
                     .deliverAfter(delay, TimeUnit.MILLISECONDS)
                     .send()
                     .toString();
@@ -77,39 +97,54 @@ public class PulsarHelper implements MqHelper {
     }
 
     @Override
-    public void sendAsync(String topic, String msg, Consumer<byte[]> action) {
+    public void sendAsync(String topic, String msg, Consumer<String> action) {
+        sendAsync(topic, msg.getBytes(StandardCharsets.UTF_8), action);
+    }
+
+    @Override
+    public void sendAsync(String topic, byte[] msgArr, Consumer<String> action) {
         CompletableFuture<MessageId> completableFuture = ConcurrentMapFactory.get(topic)
-                .sendAsync(msg.getBytes(StandardCharsets.UTF_8))
+                .sendAsync(msgArr)
                 .exceptionally((e) -> {
                     log.error("sendAsync exception: ", e);
                     return null;
                 });
         if (action != null) {
-            completableFuture.thenAccept((messageId -> action.accept(messageId.toByteArray())));
+            completableFuture.thenAccept((messageId -> action.accept(messageId.toString())));
         }
     }
 
     @Override
-    public void sendAsync(String topic, String key, String msg, Consumer<byte[]> action) {
+    public void sendAsync(String topic, String key, String msg, Consumer<String> action) {
+        sendAsync(topic, key, msg.getBytes(StandardCharsets.UTF_8), action);
+    }
+
+    @Override
+    public void sendAsync(String topic, String key, byte[] msgArr, Consumer<String> action) {
         CompletableFuture<MessageId> completableFuture = ConcurrentMapFactory.get(topic)
                 .newMessage()
                 .key(key)
-                .value(msg.getBytes(StandardCharsets.UTF_8))
+                .value(msgArr)
                 .sendAsync()
                 .exceptionally((e) -> {
                     log.error("sendAsync exception: ", e);
                     return null;
                 });
         if (action != null) {
-            completableFuture.thenAccept((messageId -> action.accept(messageId.toByteArray())));
+            completableFuture.thenAccept((messageId -> action.accept(messageId.toString())));
         }
     }
 
     @Override
-    public void sendAsync(String topic, String msg, long delay, Consumer<byte[]> action) {
+    public void sendAsync(String topic, String msg, long delay, Consumer<String> action) {
+        sendAsync(topic, msg.getBytes(StandardCharsets.UTF_8), delay, action);
+    }
+
+    @Override
+    public void sendAsync(String topic, byte[] msgArr, long delay, Consumer<String> action) {
         CompletableFuture<MessageId> completableFuture = ConcurrentMapFactory.get(topic)
                 .newMessage()
-                .value(msg.getBytes(StandardCharsets.UTF_8))
+                .value(msgArr)
                 .deliverAfter(delay, TimeUnit.MILLISECONDS)
                 .sendAsync()
                 .exceptionally((e) -> {
@@ -117,23 +152,28 @@ public class PulsarHelper implements MqHelper {
                     return null;
                 });
         if (action != null) {
-            completableFuture.thenAccept((messageId -> action.accept(messageId.toByteArray())));
+            completableFuture.thenAccept((messageId -> action.accept(messageId.toString())));
         }
     }
 
     @Override
-    public void sendAsync(String topic, String key, String msg, long delay, Consumer<byte[]> action) {
+    public void sendAsync(String topic, String key, String msg, long delay, Consumer<String> action) {
+        sendAsync(topic, key, msg.getBytes(StandardCharsets.UTF_8), delay, action);
+    }
+
+    @Override
+    public void sendAsync(String topic, String key, byte[] msgArr, long delay, Consumer<String> action) {
         CompletableFuture<MessageId> completableFuture = ConcurrentMapFactory.get(topic)
                 .newMessage()
                 .key(key)
-                .value(msg.getBytes(StandardCharsets.UTF_8))
+                .value(msgArr)
                 .deliverAfter(delay, TimeUnit.MILLISECONDS)
                 .sendAsync().exceptionally((e) -> {
                     log.error("sendAsync exception: ", e);
                     return null;
                 });
         if (action != null) {
-            completableFuture.thenAccept((messageId -> action.accept(messageId.toByteArray())));
+            completableFuture.thenAccept((messageId -> action.accept(messageId.toString())));
         }
     }
 }
