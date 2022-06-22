@@ -1,4 +1,4 @@
-package cool.doudou.celery.common.mq.helper;
+package cool.doudou.mq.assistant.core.helper;
 
 import java.util.function.Consumer;
 

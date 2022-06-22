@@ -1,4 +1,4 @@
-package cool.doudou.celery.common.mq.properties;
+package cool.doudou.mq.assistant.core.properties;
 
 import lombok.Data;
 import org.apache.pulsar.client.api.CompressionType;

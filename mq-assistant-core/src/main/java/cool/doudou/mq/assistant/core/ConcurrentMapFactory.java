@@ -1,4 +1,4 @@
-package cool.doudou.celery.common.mq;
+package cool.doudou.mq.assistant.core;
 
 import org.apache.pulsar.client.api.Producer;
 

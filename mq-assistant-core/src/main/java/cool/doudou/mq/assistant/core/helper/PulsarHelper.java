@@ -1,6 +1,6 @@
-package cool.doudou.celery.common.mq.helper;
+package cool.doudou.mq.assistant.core.helper;
 
-import cool.doudou.celery.common.mq.ConcurrentMapFactory;
+import cool.doudou.mq.assistant.core.ConcurrentMapFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.PulsarClientException;

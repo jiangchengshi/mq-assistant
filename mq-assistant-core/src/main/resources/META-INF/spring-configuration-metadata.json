@@ -2,7 +2,7 @@
   "groups": [
     {
       "name": "pulsar",
-      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties"
+      "sourceType": "cool.doudou.mq.assistant.core.properties.PulsarProperties"
     }
   ],
   "properties": [
@@ -10,28 +10,28 @@
       "name": "pulsar.service-url",
       "type": "java.lang.String",
       "description": "服务Url",
-      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "sourceType": "cool.doudou.mq.assistant.core.properties.PulsarProperties",
       "defaultValue": "pulsar://127.0.0.1:6650"
     },
     {
       "name": "pulsar.compression-type",
       "type": "java.lang.String",
       "description": "生产者压缩策略",
-      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "sourceType": "cool.doudou.mq.assistant.core.properties.PulsarProperties",
       "defaultValue": "LZ4"
     },
     {
       "name": "pulsar.subscription-name",
       "type": "java.lang.String",
       "description": "消费者订阅名称",
-      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "sourceType": "cool.doudou.mq.assistant.core.properties.PulsarProperties",
       "defaultValue": "default"
     },
     {
       "name": "pulsar.subscription-type",
       "type": "java.lang.String",
       "description": "订阅类型",
-      "sourceType": "cool.doudou.celery.common.mq.properties.PulsarProperties",
+      "sourceType": "cool.doudou.mq.assistant.core.properties.PulsarProperties",
       "defaultValue": "Shared"
     }
   ],

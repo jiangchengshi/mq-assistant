@@ -1,9 +1,9 @@
 package cool.doudou.mq.assistant.boot.starter.auto.configuration;
 
-import cool.doudou.celery.common.mq.config.PulsarConfig;
-import cool.doudou.celery.common.mq.helper.MqHelper;
-import cool.doudou.celery.common.mq.helper.PulsarHelper;
-import cool.doudou.celery.common.mq.properties.PulsarProperties;
+import cool.doudou.mq.assistant.core.config.PulsarConfig;
+import cool.doudou.mq.assistant.core.helper.MqHelper;
+import cool.doudou.mq.assistant.core.helper.PulsarHelper;
+import cool.doudou.mq.assistant.core.properties.PulsarProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

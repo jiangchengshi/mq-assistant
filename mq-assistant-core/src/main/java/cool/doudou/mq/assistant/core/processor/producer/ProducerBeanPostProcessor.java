@@ -1,8 +1,8 @@
-package cool.doudou.celery.common.mq.processor.producer;
+package cool.doudou.mq.assistant.core.processor.producer;
 
-import cool.doudou.celery.common.mq.ConcurrentMapFactory;
+import cool.doudou.mq.assistant.core.ConcurrentMapFactory;
 import cool.doudou.mq.assistant.annotation.MqProducer;
-import cool.doudou.celery.common.mq.properties.PulsarProperties;
+import cool.doudou.mq.assistant.core.properties.PulsarProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.CompressionType;
