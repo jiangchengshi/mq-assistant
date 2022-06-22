@@ -1,8 +1,8 @@
-package cool.doudou.celery.common.mq.config;
+package cool.doudou.mq.assistant.core.config;
 
-import cool.doudou.celery.common.mq.processor.consumer.ConsumerBeanPostProcessor;
-import cool.doudou.celery.common.mq.processor.producer.ProducerBeanPostProcessor;
-import cool.doudou.celery.common.mq.properties.PulsarProperties;
+import cool.doudou.mq.assistant.core.processor.consumer.ConsumerBeanPostProcessor;
+import cool.doudou.mq.assistant.core.processor.producer.ProducerBeanPostProcessor;
+import cool.doudou.mq.assistant.core.properties.PulsarProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.PulsarClient;
