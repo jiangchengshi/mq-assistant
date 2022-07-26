@@ -2,9 +2,9 @@
 buildscript {
     ext {
         depVersion = [
-                springBoot: "2.6.3",
-                pulsar    : "2.9.1",
-                lombok    : "1.18.22"
+                springBoot: "2.7.2",
+                pulsar    : "2.10.1",
+                lombok    : "1.18.24"
         ]
     }
 
@@ -24,7 +24,7 @@ buildscript {
 
 allprojects {
     group = "cool.doudou"
-    version = "1.0.2"
+    version = "1.0.3"
 }
 
 // 子模块配置
@@ -42,6 +42,11 @@ subprojects {
         maven { url "https://maven.aliyun.com/repository/spring" }
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    configurations {
+        all*.exclude group: "spring-boot-starter-logging"
+        all*.exclude module: "spring-boot-starter-tomcat"
     }
 
     // 依赖管理
