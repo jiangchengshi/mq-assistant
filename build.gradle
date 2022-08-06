@@ -24,7 +24,7 @@ buildscript {
 
 allprojects {
     group = "cool.doudou"
-    version = "1.0.3"
+    version = "2.0.0"
 }
 
 // 子模块配置
@@ -108,7 +108,7 @@ subprojects {
                     developers {
                         developer {
                             id = "jiangcs"
-                            name = "这么难演"
+                            name = "这么诚实"
                             email = "jiangchengshi@gmail.com"
                         }
                     }

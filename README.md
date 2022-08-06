@@ -1,7 +1,8 @@
 # 欢迎使用 MQ-Assistant
 
-[![Maven](https://img.shields.io/badge/Maven-v1.0.3-blue)](https://search.maven.org/search?q=g:cool.doudou%20a:mq-assistant-*)
+[![Maven](https://img.shields.io/badge/Maven-v2.0.0-blue)](https://search.maven.org/search?q=g:cool.doudou%20a:mq-assistant-*)
 [![License](https://img.shields.io/badge/License-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-v2.7.2-blue)
 
 ## 简介
 
@@ -16,7 +17,7 @@ MQ助手 - 简化配置，注解带飞！
 ### 引入依赖
 
 ```kotlin
-implementation("cool.doudou:mq-assistant:latest")
+implementation("cool.doudou:mq-assistant-boot-starter:latest")
 ```
 
 ### Pulsar配置
