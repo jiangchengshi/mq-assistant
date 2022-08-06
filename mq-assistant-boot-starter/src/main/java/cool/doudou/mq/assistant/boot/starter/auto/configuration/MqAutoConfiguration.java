@@ -4,10 +4,10 @@ import cool.doudou.mq.assistant.core.config.PulsarConfig;
 import cool.doudou.mq.assistant.core.helper.MqHelper;
 import cool.doudou.mq.assistant.core.helper.PulsarHelper;
 import cool.doudou.mq.assistant.core.properties.PulsarProperties;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
  */
 @EnableConfigurationProperties({PulsarProperties.class})
 @Import({PulsarConfig.class})
-@AutoConfiguration
+@Configuration
 public class MqAutoConfiguration {
     @ConditionalOnMissingBean(MqHelper.class)
     @Bean
