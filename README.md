@@ -16,7 +16,7 @@ MQ助手 - 简化配置，注解带飞！
 ### 引入依赖
 
 ```kotlin
-implementation("cool.doudou:mq-assistant:latest")
+implementation("cool.doudou:mq-assistant-boot-starter:latest")
 ```
 
 ### Pulsar配置

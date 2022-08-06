@@ -20,9 +20,10 @@ import org.springframework.context.annotation.Import;
 @Import({PulsarConfig.class})
 @AutoConfiguration
 public class MqAutoConfiguration {
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(MqHelper.class)
     @Bean
     public MqHelper mqHelper() {
+        System.out.println("mqHelper");
         return new PulsarHelper();
     }
 }
