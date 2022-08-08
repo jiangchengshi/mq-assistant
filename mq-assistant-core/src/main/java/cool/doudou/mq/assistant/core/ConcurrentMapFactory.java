@@ -12,13 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2022/2/19
  */
 public class ConcurrentMapFactory {
-    private static final Map<String, Producer<byte[]>> PRODUCER_MAP = new ConcurrentHashMap<>();
+    private static final Map<String, Producer<String>> PRODUCER_MAP = new ConcurrentHashMap<>();
 
-    public static Producer<byte[]> get(String topic) {
+    public static Producer<String> get(String topic) {
         return PRODUCER_MAP.get(topic);
     }
 
-    public static void add(String topic, Producer<byte[]> producer) {
+    public static void add(String topic, Producer<String> producer) {
         PRODUCER_MAP.put(topic, producer);
     }
 }
