@@ -1,13 +1,14 @@
 package cool.doudou.mq.assistant.core.processor.producer;
 
-import cool.doudou.mq.assistant.core.ConcurrentMapFactory;
 import cool.doudou.mq.assistant.annotation.MqProducer;
+import cool.doudou.mq.assistant.core.ConcurrentMapFactory;
 import cool.doudou.mq.assistant.core.properties.PulsarProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.CompressionType;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
+import org.apache.pulsar.client.api.Schema;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -49,7 +50,7 @@ public class ProducerBeanPostProcessor implements BeanPostProcessor {
 
         Arrays.stream(topics).forEach((topic) -> {
             try {
-                ConcurrentMapFactory.add(topic, pulsarClient.newProducer()
+                ConcurrentMapFactory.add(topic, pulsarClient.newProducer(Schema.STRING)
                         .topic(topic)
                         .compressionType(CompressionType.valueOf(pulsarProperties.getCompressionType()))
                         .sendTimeout(pulsarProperties.getSendTimeout(), TimeUnit.SECONDS)

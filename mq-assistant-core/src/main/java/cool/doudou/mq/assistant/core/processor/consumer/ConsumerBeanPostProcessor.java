@@ -12,6 +12,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -61,7 +62,7 @@ public class ConsumerBeanPostProcessor implements BeanPostProcessor {
                     .messageListener((consumer, msg) -> {
                         try {
                             method.setAccessible(true);
-                            method.invoke(bean, consumer.getTopic(), msg.getData());
+                            method.invoke(bean, consumer.getTopic(), new String(msg.getData(), StandardCharsets.UTF_8));
                             consumer.acknowledge(msg);
                         } catch (Exception e) {
                             consumer.negativeAcknowledge(msg);
