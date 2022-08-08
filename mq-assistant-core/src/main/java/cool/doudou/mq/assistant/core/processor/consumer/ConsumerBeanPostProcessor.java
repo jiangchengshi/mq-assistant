@@ -4,10 +4,7 @@ import cool.doudou.mq.assistant.annotation.MqConsumer;
 import cool.doudou.mq.assistant.core.properties.PulsarProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.pulsar.client.api.PulsarClient;
-import org.apache.pulsar.client.api.PulsarClientException;
-import org.apache.pulsar.client.api.SubscriptionInitialPosition;
-import org.apache.pulsar.client.api.SubscriptionType;
+import org.apache.pulsar.client.api.*;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -52,7 +49,7 @@ public class ConsumerBeanPostProcessor implements BeanPostProcessor {
         }
 
         try {
-            pulsarClient.newConsumer()
+            pulsarClient.newConsumer(Schema.STRING)
                     .topic(topics)
                     .subscriptionName(pulsarProperties.getSubscriptionName())
                     .subscriptionType(SubscriptionType.valueOf(pulsarProperties.getSubscriptionType()))
@@ -61,7 +58,7 @@ public class ConsumerBeanPostProcessor implements BeanPostProcessor {
                     .messageListener((consumer, msg) -> {
                         try {
                             method.setAccessible(true);
-                            method.invoke(bean, consumer.getTopic(), msg.getData());
+                            method.invoke(bean, consumer.getTopic(), msg.getValue());
                             consumer.acknowledge(msg);
                         } catch (Exception e) {
                             consumer.negativeAcknowledge(msg);
